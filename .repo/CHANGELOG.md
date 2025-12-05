@@ -1,3 +1,7 @@
+---
+disable-model-invocation: true
+---
+
 # Changelog
 
 All notable changes to InsightureAI Claude Commands will be documented in this file.

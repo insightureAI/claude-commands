@@ -1,3 +1,7 @@
+---
+disable-model-invocation: true
+---
+
 ## Summary
 
 [2-3 sentence description of what this PR does and why]

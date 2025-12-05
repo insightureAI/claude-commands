@@ -1,3 +1,7 @@
+---
+disable-model-invocation: true
+---
+
 # [Feature Name]
 
 > **Status**: draft | review | approved | implemented

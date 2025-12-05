@@ -1,3 +1,7 @@
+---
+disable-model-invocation: true
+---
+
 # InsightureAI Claude Commands
 
 > **Design-doc-driven development toolkit for tech leads**

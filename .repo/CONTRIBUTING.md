@@ -1,3 +1,7 @@
+---
+disable-model-invocation: true
+---
+
 # Contributing to InsightureAI Claude Commands
 
 ## Adding a New Command
