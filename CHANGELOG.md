@@ -6,6 +6,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Added
+- `/subagents` - Execute multiple tasks in parallel using subagents via the Task tool
+
 ## [1.0.0] - 2025-12-05
 
 ### Added
@@ -41,3 +44,4 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 | Version | Date | Highlights |
 |---------|------|------------|
 | 1.0.0 | 2025-12-05 | Initial release with 8 commands, 3 agents |
+| 1.1.0 | Unreleased | Added `/subagents` for parallel task execution |

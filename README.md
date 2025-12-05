@@ -9,7 +9,7 @@ A curated set of Claude Code commands focused on what tech leads actually need: 
 - **Design doc compliance** — Every review checks if code matches the original spec
 - **Documentation hygiene** — Find duplicates, capture ideas, keep docs clean
 - **Framework-agnostic** — Works with any stack, not opinionated about Rails/React/etc
-- **Focused, not exhaustive** — 8 commands that matter, not 57 you'll never use
+- **Focused, not exhaustive** — 9 commands that matter, not 57 you'll never use
 
 ## Installation
 
@@ -35,6 +35,7 @@ cd ~/.claude/commands && git pull
 | `/plan <feature>` | Idea → actionable implementation plan | `/plan Add OAuth2 with JWT tokens` |
 | `/review [PR]` | 5-perspective review with design doc compliance | `/review 123 --design docs/specs/auth.md` |
 | `/standup [days]` | Git activity → standup notes | `/standup` or `/standup 3` |
+| `/subagents <tasks>` | Execute multiple tasks in parallel via subagents | `/subagents "Fix auth" "Add tests" "Update docs"` |
 
 ### Code Quality
 
