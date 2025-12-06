@@ -135,6 +135,36 @@ Main agent synthesizes all sub-agent findings into final report.
 - Estimated time savings: [based on parallelization ratio]
 ```
 
+#### 0d-ii. Parallel Execution Enforcement (CRITICAL)
+
+**THIS IS NOT OPTIONAL.** You MUST follow these rules:
+
+1. **Single Message, Multiple Task Calls**: When launching Wave 1, send ONE message containing ALL Task tool invocations. Do NOT send them sequentially.
+
+   ```
+   ❌ WRONG: Send Task call → Wait for result → Send next Task call
+   ✅ RIGHT: Send single message with Task call 1 + Task call 2 + Task call 3 + ...
+   ```
+
+2. **Use Correct Agent Types**:
+   - Codebase analysis → `subagent_type="Explore"`
+   - Web research → `subagent_type="general-purpose"`
+   - Documentation fetching → `subagent_type="general-purpose"`
+
+3. **Each Sub-Agent Must Be Thorough**: Instruct each agent to:
+   - Perform multiple searches (not just one)
+   - Follow up on promising leads
+   - Cross-reference findings from different sources
+
+4. **Minimum Search Targets by Depth**:
+   | Depth | Min Total Searches | Min Sources Per Option |
+   |-------|-------------------|------------------------|
+   | quick | 5-8 | 2-3 |
+   | standard | 10-15 | 3-5 |
+   | deep | 20+ | 5+ |
+
+5. **Verify Before Proceeding**: After Wave 1 completes, check that each agent returned substantive findings. If an agent returned thin results, spawn a follow-up agent to dig deeper before moving to Wave 2.
+
 #### 0e. Sub-Agent Prompt Templates
 
 When launching parallel sub-agents, use focused prompts:
@@ -346,6 +376,48 @@ Explicitly check for issues that cause problems later:
 | **License Contamination** | Audit full license tree for GPL/copyleft | [Result] |
 | **Single Maintainer Risk** | Check contributor count and activity distribution | [Result] |
 | **Hype vs Reality** | Find production case studies, not just tutorials | [Result] |
+
+### Phase 5b: Research Quality Self-Check (Before Synthesis)
+
+**STOP.** Before synthesizing findings into recommendations, verify the research was thorough:
+
+```markdown
+## 🔍 Research Quality Verification
+
+### Execution Verification
+| Check | Status | Notes |
+|-------|--------|-------|
+| Used Task tool with parallel invocations? | ✅/❌ | [Did you send multiple Task calls in ONE message?] |
+| Correct agent types used? | ✅/❌ | [Explore for codebase, general-purpose for web] |
+| All Wave 1 agents launched simultaneously? | ✅/❌ | [Single message, not sequential] |
+
+### Coverage Verification
+| Metric | Target | Actual | Status |
+|--------|--------|--------|--------|
+| Total web searches performed | [by depth] | ___ | ✅/❌ |
+| Unique sources consulted | [by depth] | ___ | ✅/❌ |
+| Options with multiple sources | 100% | ___% | ✅/❌ |
+| Official docs checked | Yes | ✅/❌ | |
+| GitHub/npm/registry data | Yes | ✅/❌ | |
+| Case studies found | 1+ per option | ___ | ✅/❌ |
+
+### Depth-Specific Minimums
+| Depth | Min Searches | Min Sources/Option | Min Case Studies |
+|-------|-------------|-------------------|------------------|
+| quick | 5-8 | 2-3 | 0 |
+| standard | 10-15 | 3-5 | 1 per top option |
+| deep | 20+ | 5+ | 2+ per option |
+
+### Remediation (If Any Check Failed)
+If verification failed:
+1. Identify which areas are under-researched
+2. Spawn additional sub-agents to fill gaps
+3. Re-verify before proceeding to synthesis
+
+**Only proceed to Phase 6 when all checks pass for the selected depth level.**
+```
+
+---
 
 ### Phase 6: Comparison & Recommendation
 
